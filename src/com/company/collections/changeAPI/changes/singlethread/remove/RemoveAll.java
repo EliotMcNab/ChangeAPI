@@ -107,13 +107,11 @@ public class RemoveAll<E> extends RemoveBase<E> {
         // initialises the result array
         final E[] result = (E[]) Array.newInstance(clazz, array.length);
 
-        final int stepSize = array.length / 16;
-
         // for every value in the given array...
         int k = 0;
         for (E value : array) {
             // ...if the value is not found...
-            if (ArrayUtil.stepSearch(uniqueToRemove, value, comparator, stepSize) < 0) {
+            if (Arrays.binarySearch(uniqueToRemove, value, comparator) < 0) {
                 // ...adds that value to the resulting array
                 result[k++] = value;
             }
