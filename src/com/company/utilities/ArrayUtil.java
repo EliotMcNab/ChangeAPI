@@ -1162,4 +1162,190 @@ public class ArrayUtil {
         // returns the resulting array
         return Arrays.copyOf(blindResult, k);
     }
+
+    public static char[] toCharArray(@NotNull final String string) {
+        Objects.requireNonNull(string);
+
+        final char[] array = new char[string.length()];
+
+        for (int i = 0; i < string.length(); i++) {
+            array[i] = string.charAt(i);
+        }
+
+        return array;
+    }
+
+    public static String fromCharArray(final char @NotNull [] chars) {
+        Objects.requireNonNull(chars);
+        if (chars.length == 0) return "";
+
+        return String.copyValueOf(chars);
+    }
+
+    // region boxing arrays
+    public static Object boxArray(@NotNull final Object array) {
+        Objects.requireNonNull(array);
+
+        return switch (array) {
+            case byte[]    e -> box(e);
+            case short[]   e -> box(e);
+            case int[]     e -> box(e);
+            case long[]    e -> box(e);
+            case float[]   e -> box(e);
+            case double[]  e -> box(e);
+            case boolean[] e -> box(e);
+            case char[]    e -> box(e);
+            default          -> throw new IllegalStateException("Cannot box array of non-primitive type "
+                                                                + array.getClass().getComponentType());
+        };
+    }
+
+    public static Byte[] box(final byte @NotNull [] bytes) {
+        final Byte[] result = new Byte[bytes.length];
+        for (int i = 0; i < bytes.length; i++) {
+            result[i] = bytes[i];
+        }
+        return result;
+    }
+
+    public static Short[] box(final short @NotNull [] shorts) {
+        final Short[] result = new Short[shorts.length];
+        for (int i = 0; i < shorts.length; i++) {
+            result[i] = shorts[i];
+        }
+        return result;
+    }
+
+    public static Integer[] box(final int @NotNull [] ints) {
+        final Integer[] result = new Integer[ints.length];
+        for (int i = 0; i < ints.length; i++) {
+            result[i] = ints[i];
+        }
+        return result;
+    }
+
+    public static Long[] box(final long @NotNull [] longs) {
+        final Long[] result = new Long[longs.length];
+        for (int i = 0; i < longs.length; i++) {
+            result[i] = longs[i];
+        }
+        return result;
+    }
+
+    public static Float[] box(final float @NotNull [] floats) {
+        final Float[] result = new Float[floats.length];
+        for (int i = 0; i < floats.length; i++) {
+            result[i] = floats[i];
+        }
+        return result;
+    }
+
+    public static Double[] box(final double @NotNull [] doubles) {
+        final Double[] result = new Double[doubles.length];
+        for (int i = 0; i < doubles.length; i++) {
+            result[i] = doubles[i];
+        }
+        return result;
+    }
+
+    public static Boolean[] box(final boolean @NotNull [] booleans) {
+        final Boolean[] result = new Boolean[booleans.length];
+        for (int i = 0; i < booleans.length; i++) {
+            result[i] = booleans[i];
+        }
+        return result;
+    }
+
+    public static Character[] box(final char @NotNull [] chars) {
+        final Character[] result = new Character[chars.length];
+        for (int i = 0; i < chars.length; i++) {
+            result[i] = chars[i];
+        }
+        return result;
+    }
+    // endregion
+
+    // region unboxing arrays
+    public static Object unboxArray(@NotNull final Object[] array) {
+        Objects.requireNonNull(array);
+
+        return switch (array) {
+            case Byte[] e -> unbox(e);
+            case Short[] e -> unbox(e);
+            case Integer[] e -> unbox(e);
+            case Long[] e -> unbox(e);
+            case Float[] e -> unbox(e);
+            case Double[] e -> unbox(e);
+            case Boolean[] e -> unbox(e);
+            case Character[] e -> unbox(e);
+            default -> throw new IllegalStateException("Cannot unbox array of non boxed type "
+                                                       + array.getClass().getComponentType());
+        };
+    }
+
+    public static byte[] unbox(@NotNull final Byte[] bytes) {
+        final byte[] result = new byte[bytes.length];
+        for (int i = 0; i < bytes.length; i++) {
+            result[i] = bytes[i];
+        }
+        return result;
+    }
+
+    public static short[] unbox(@NotNull final Short[] shorts) {
+        final short[] result = new short[shorts.length];
+        for (int i = 0; i < shorts.length; i++) {
+            result[i] = shorts[i];
+        }
+        return result;
+    }
+
+    public static int[] unbox(@NotNull final Integer[] ints) {
+        final int[] result = new int[ints.length];
+        for (int i = 0; i < ints.length; i++) {
+            result[i] = ints[i];
+        }
+        return result;
+    }
+
+    public static long[] unbox(@NotNull final Long[] longs) {
+        final long[] result = new long[longs.length];
+        for (int i = 0; i < longs.length; i++) {
+            result[i] = longs[i];
+        }
+        return result;
+    }
+
+    public static float[] unbox(@NotNull final Float[] floats) {
+        final float[] result = new float[floats.length];
+        for (int i = 0; i < floats.length; i++) {
+            result[i] = floats[i];
+        }
+        return result;
+    }
+
+    public static double[] unbox(@NotNull final Double[] doubles) {
+        final double[] result = new double[doubles.length];
+        for (int i = 0; i < doubles.length; i++) {
+            result[i] = doubles[i];
+        }
+        return result;
+    }
+
+    public static boolean[] unbox(@NotNull final Boolean[] booleans) {
+        final boolean[] result = new boolean[booleans.length];
+        for (int i = 0; i < booleans.length; i++) {
+            result[i] = booleans[i];
+        }
+        return result;
+    }
+
+    public static char[] unbox(@NotNull final Character[] chars) {
+        final char[] result = new char[chars.length];
+        for (int i = 0; i < chars.length; i++) {
+            result[i] = chars[i];
+        }
+        return result;
+    }
+    // endregion
+
 }
